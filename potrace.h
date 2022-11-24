@@ -5,6 +5,7 @@
 #include "auxiliary.h"
 #include "trans.h"
 #include <vector>
+#include <array>
 
 /* structure to hold a dimensioned value */
 struct dim_s
@@ -51,7 +52,12 @@ struct imginfo_s
   trans_t trans;                 /* specify relative position of a tilted rectangle */
 };
 
-struct QuantizedValue;
+struct QuantizedValue
+{
+    std::vector<std::array<int, 2>> pixels;
+    std::array<float, 3> outputColor;
+    std::array<float, 3> color;
+};
 
 typedef struct imginfo_s imginfo_t;
   char *start(

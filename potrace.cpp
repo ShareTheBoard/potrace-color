@@ -9,14 +9,11 @@
 #include "backend_svg.h"
 #include "hexutils.h"
 
-#undef abs
-
 #include <map>
 #include <vector>
 #include <algorithm>
 #include <memory>
-
-#include "board_content_detector.h"
+#include <cmath>
 
 static uint8_t get_quantized_value(uint8_t color, std::vector<float>& levels)
 {
@@ -25,7 +22,7 @@ static uint8_t get_quantized_value(uint8_t color, std::vector<float>& levels)
     float c = (float)color / 255.0f;
     auto l = *(std::lower_bound(std::begin(levels), std::end(levels), c));
     auto r = l + levels[1];
-    auto val = std::abs(l - c) > std::abs(r - c) ? r : l;
+    auto val = abs(l - c) > abs(r - c) ? r : l;
 
     return 255.0f * val;
 }
